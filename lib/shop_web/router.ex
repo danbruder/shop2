@@ -68,6 +68,13 @@ defmodule ShopWeb.Router do
       on_mount: [{ShopWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
+            live "/fronts", FrontLive.Index, :index
+    live "/fronts/new", FrontLive.Index, :new
+    live "/fronts/:id/edit", FrontLive.Index, :edit
+
+    live "/fronts/:id", FrontLive.Show, :show
+    live "/fronts/:id/show/edit", FrontLive.Show, :edit
     end
   end
 

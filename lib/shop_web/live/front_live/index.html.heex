@@ -1,0 +1,41 @@
+<.header>
+  Listing Fronts
+  <:actions>
+    <.link patch={~p"/fronts/new"}>
+      <.button>New Front</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="fronts"
+  rows={@streams.fronts}
+  row_click={fn {_id, front} -> JS.navigate(~p"/fronts/#{front}") end}
+>
+  <:col :let={{_id, front}} label="Name"><%= front.name %></:col>
+  <:action :let={{_id, front}}>
+    <div class="sr-only">
+      <.link navigate={~p"/fronts/#{front}"}>Show</.link>
+    </div>
+    <.link patch={~p"/fronts/#{front}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, front}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: front.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="front-modal" show on_cancel={JS.patch(~p"/fronts")}>
+  <.live_component
+    module={ShopWeb.FrontLive.FormComponent}
+    id={@front.id || :new}
+    title={@page_title}
+    action={@live_action}
+    front={@front}
+    patch={~p"/fronts"}
+  />
+</.modal>
