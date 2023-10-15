@@ -1,18 +1,10 @@
 <.header>
-  Front <%= @front.id %>
-  <:subtitle>This is a front record from your database.</:subtitle>
-  <:actions>
-    <.link patch={~p"/fronts/#{@front}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit front</.button>
-    </.link>
-  </:actions>
+  <%= @front.name %>
 </.header>
 
-<.list>
-  <:item title="Name"><%= @front.name %></:item>
-</.list>
-
-<.back navigate={~p"/fronts"}>Back to fronts</.back>
+<%= for product <- @products do %>
+  <div><%= product.title %></div>
+<% end %>
 
 <.modal :if={@live_action == :edit} id="front-modal" show on_cancel={JS.patch(~p"/fronts/#{@front}")}>
   <.live_component

@@ -7,6 +7,7 @@ defmodule Shop.Fronts do
   alias Shop.Repo
 
   alias Shop.Fronts.Front
+  alias Shop.Products.Product
 
   @doc """
   Returns the list of fronts.
@@ -100,5 +101,11 @@ defmodule Shop.Fronts do
   """
   def change_front(%Front{} = front, attrs \\ %{}) do
     Front.changeset(front, attrs)
+  end
+
+  def get_products_by_front_id(front_id) do 
+    from(p in Product, where: p.front_id == ^front_id)
+                                           |> Repo.all
+
   end
 end

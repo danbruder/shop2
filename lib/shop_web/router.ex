@@ -69,12 +69,18 @@ defmodule ShopWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
 
-            live "/fronts", FrontLive.Index, :index
-    live "/fronts/new", FrontLive.Index, :new
-    live "/fronts/:id/edit", FrontLive.Index, :edit
+      live "/fronts", FrontLive.Index, :index
+      live "/fronts/new", FrontLive.Index, :new
+      live "/fronts/:id/edit", FrontLive.Index, :edit
 
-    live "/fronts/:id", FrontLive.Show, :show
-    live "/fronts/:id/show/edit", FrontLive.Show, :edit
+      live "/fronts/:id", FrontLive.Show, :show
+      live "/fronts/:id/show/edit", FrontLive.Show, :edit
+
+      live "/products", ProductLive.Index, :index
+      live "/products/new", ProductLive.Index, :new
+      live "/products/:id/edit", ProductLive.Index, :edit
+      live "/products/:id", ProductLive.Show, :show
+      live "/products/:id/show/edit", ProductLive.Show, :edit
     end
   end
 

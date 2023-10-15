@@ -1,7 +1,7 @@
-defmodule ShopWeb.FrontLive.Show do
+defmodule ShopWeb.ProductLive.Show do
   use ShopWeb, :live_view
 
-  alias Shop.Fronts
+  alias Shop.Products
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,11 +13,9 @@ defmodule ShopWeb.FrontLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:front, Fronts.get_front!(id))
-     |> assign(:products, Fronts.get_products_by_front_id(id))
-    }
+     |> assign(:product, Products.get_product!(id))}
   end
 
-  defp page_title(:show), do: "Show Front"
-  defp page_title(:edit), do: "Edit Front"
+  defp page_title(:show), do: "Show Product"
+  defp page_title(:edit), do: "Edit Product"
 end
