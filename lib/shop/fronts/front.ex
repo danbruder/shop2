@@ -4,6 +4,7 @@ defmodule Shop.Fronts.Front do
 
   schema "fronts" do
     field :name, :string
+    field :subdomain, :string
 
     timestamps()
   end
@@ -11,7 +12,7 @@ defmodule Shop.Fronts.Front do
   @doc false
   def changeset(front, attrs) do
     front
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:name, :subdomain])
+    |> validate_required([:name, :subdomain])
   end
 end

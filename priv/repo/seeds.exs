@@ -9,3 +9,14 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+Shop.Accounts.register_user(%{
+  "email" => "test@test.com",
+  "password" => "test12345678", 
+})
+
+Shop.Fronts.create_front(%{
+  "name" => "Hey my store!",
+  "subdomain" => "hey",
+})
+
